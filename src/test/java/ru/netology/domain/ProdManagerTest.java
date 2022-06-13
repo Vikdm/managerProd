@@ -3,6 +3,7 @@ package ru.netology.domain;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ProdManagerTest {
 
@@ -81,4 +82,25 @@ public class ProdManagerTest {
         assertArrayEquals(actual, expected);
     }
 
+    @Test
+    public void removeTest3 (){
+        repo.save(book1);
+        repo.save(smartphone1);
+        repo.save(book2);
+
+        assertThrows(NotFoundException.class, () -> {repo.removeById(-33);});
+    }
+
+    @Test
+    public void removeTest4 (){
+        repo.save(book1);
+        repo.save(smartphone1);
+        repo.save(book2);
+        repo.removeById(33);
+
+        Product[] actual = repo.findAll();
+        Product[] expected = { book1, smartphone1};
+
+        assertArrayEquals(actual, expected);
+    }
 }

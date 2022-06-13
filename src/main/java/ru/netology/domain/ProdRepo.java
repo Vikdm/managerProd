@@ -20,13 +20,27 @@ public class ProdRepo {
         return prods;
     }
 
+    public Product[] findById(int id) {
+        for (Product prod : prods) {
+            if (prod.getId() == id) {
+                return prods;
+            }
+        }
+        return null;
+    }
+
+
     public void removeById(int id) {
+
+        if (findById(id) == null) {
+            throw new NotFoundException("Element with id: " + id + " not found");
+        }
         int len = prods.length - 1;
         Product[] tmp = new Product[len];
         int index = 0;
         for (Product prod : prods) {
             if (prod.getId() != id) {
-                tmp [index] = prod;
+                tmp[index] = prod;
                 index++;
             }
         }
