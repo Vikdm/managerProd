@@ -21,6 +21,9 @@ public class ProdRepo {
     }
 
     public void removeById(int id) {
+        if (prods.length == 0) {
+            return;
+        }
         int len = prods.length - 1;
         Product[] tmp = new Product[len];
         int index = 0;

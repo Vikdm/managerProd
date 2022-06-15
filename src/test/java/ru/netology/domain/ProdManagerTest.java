@@ -81,4 +81,26 @@ public class ProdManagerTest {
         assertArrayEquals(actual, expected);
     }
 
+    @Test
+    public void removeTest3 (){
+        repo.removeById(33);
+
+        Product[] actual = repo.findAll();
+        Product[] expected = {};
+
+        assertArrayEquals(actual, expected);
+    }
+
+    @Test
+    public void removeTest4 (){
+        repo.save(book2);
+        repo.removeById(33);
+        repo.findAll();
+
+        Product[] actual = repo.findAll();
+        Product[] expected = {};
+
+        assertArrayEquals(actual, expected);
+    }
+
 }
